@@ -1,6 +1,6 @@
 {
-  "name": "pilo",
-  "version": "0.0.0-development",
+  "name": "pilo-usb",
+  "version": "1.0.0",
   "description": "RPi-powered lights-out management for servers. Remotely control the keyboard, power, and see the screen of a server.",
   "bin": "./server/dist/index.js",
   "repository": "https://github.com/flotwig/pilo.git",

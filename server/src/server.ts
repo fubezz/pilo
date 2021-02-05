@@ -35,7 +35,7 @@ export class Server extends EventEmitter {
     const webSocketServer = new WebSocketServer()
 
     webSocketServer.on('command', (data: ClientMessage) => {
-      this.emit(data.type, data.ps2Command)
+      this.emit(data.type, data.command)
     })
 
     server.on('upgrade', (request, socket, head) => {

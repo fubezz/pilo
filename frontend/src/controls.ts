@@ -1,8 +1,4 @@
 import log from './log'
-import {
-  getBreakBytes,
-  getMakeBytes,
-} from 'keycodes-to-ps2-scan-codes'
 import { ClientMessage } from 'common'
 
 export function startControls() {
@@ -31,7 +27,7 @@ export function startControls() {
 
       el.addEventListener('mousedown', () => {
         log.info(`Pressing ${code} button...`)
-        document.dispatchEvent(new KeyboardEvent('keydown', { code }))
+        document.dispatchEvent(new KeyboardEvent('keydown', {   }))
       })
 
       el.addEventListener('mouseup', () => {
@@ -44,19 +40,16 @@ export function startControls() {
 
 function KeyEventHandler (ws: WebSocket) {
   return function handleKeyEvent (e: KeyboardEvent) {
-    const getBytes = e.type === 'keyup' ? getBreakBytes : getMakeBytes
-    let ps2Command
-
-    try {
-      ps2Command = getBytes(e.code)
-    } catch (err) {
-      log.warn('Error getting scancode for key', e.code, err)
-      return
+    if (e.isComposing || e.code === '229') {
+      return;
     }
+    console.log(e);
+    
+    let command = [e.code]
 
     const frame: ClientMessage = {
-      type: 'ps2-command',
-      ps2Command
+      type: 'key-command',
+      command
     }
 
     ws.send(JSON.stringify(frame))
