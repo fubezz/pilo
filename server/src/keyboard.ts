@@ -5,10 +5,15 @@ export class Keyboard {
   connect: Function
 
   constructor(opts: {
-    path: string
-    baudRate: number
+    path: string,
+    baudRate: number,
   }) {
-    this.port = new SerialPort(opts.path, opts)
+    this.port = new SerialPort(opts.path, {
+      ...opts, 
+      dataBits: 8,
+      parity: 'none',
+      stopBits: 1
+    })
   }
 
   send(command: number[]) {

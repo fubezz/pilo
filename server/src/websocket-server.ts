@@ -20,8 +20,7 @@ export class WebSocketServer extends EventEmitter {
 
       socket.on('message', (data: string) => {
         const parsed: ClientMessage = JSON.parse(data)
-        log('Received command', parsed.type)
-
+        log('Received command', parsed.type, parsed.command);
         this.emit('command', parsed)
       })
 

@@ -10,8 +10,8 @@ if (!process.env.AUTH_SHA) {
 const port = Number(process.env.PORT || 3000)
 
 const keyboard = new Keyboard({
-  path: process.env.SERIAL_PATH || '/dev/ttyUSB0',
-  baudRate: Number(process.env.SERIAL_BAUD_RATE || 9600)
+  path: process.env.SERIAL_PATH || '/dev/ttyAMA0',
+  baudRate: Number(process.env.SERIAL_BAUD_RATE || 9600),
 })
 
 const server = new Server({
@@ -19,8 +19,8 @@ const server = new Server({
   authSha: process.env.AUTH_SHA
 })
 
-server.on('ps2-command', (ps2Command) => {
-  keyboard.send(ps2Command)
+server.on('key-command', (command) => {
+  keyboard.send(command)
 })
 
 server.listen(port)
