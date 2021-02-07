@@ -9,18 +9,19 @@ export class Keyboard {
     baudRate: number,
   }) {
     this.port = new SerialPort(opts.path, {
-      ...opts, 
+      ...opts,
       dataBits: 8,
       parity: 'none',
       stopBits: 1
     })
+    
 
-    this.port.on('open', function() {
+    this.port.on('open', function () {
       console.log('Opened port to ', opts.path);
     })
   }
 
-  send(command: string) {
+  send(command: number[]) {
     this.port.write(command)
   }
 }
