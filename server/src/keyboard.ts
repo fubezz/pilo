@@ -14,9 +14,13 @@ export class Keyboard {
       parity: 'none',
       stopBits: 1
     })
+
+    this.port.on('open', function() {
+      console.log('Opened port to ', opts.path);
+    })
   }
 
-  send(command: number[]) {
+  send(command: string) {
     this.port.write(command)
   }
 }

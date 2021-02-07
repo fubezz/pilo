@@ -19,33 +19,31 @@ export function startControls() {
 
     const keyEventHandler = KeyEventHandler(ws)
 
-    document.addEventListener('keydown', keyEventHandler)
-    document.addEventListener('keyup', keyEventHandler)
+    document.addEventListener('keypress', keyEventHandler)
+    // document.addEventListener('keydown', keyEventHandler)
+    // document.addEventListener('keyup', keyEventHandler)
 
-    ;['Power', 'WakeUp', 'Sleep'].map(code => {
-      const el = document.querySelector(`button#${code.toLowerCase()}`)
+    // ;['Power', 'WakeUp', 'Sleep'].map(code => {
+    //   const el = document.querySelector(`button#${code.toLowerCase()}`)
 
-      el.addEventListener('mousedown', () => {
-        log.info(`Pressing ${code} button...`)
-        document.dispatchEvent(new KeyboardEvent('keydown', {   }))
-      })
+    //   el.addEventListener('mousedown', () => {
+    //     log.info(`Pressing ${code} button...`)
+    //     document.dispatchEvent(new KeyboardEvent('keydown', {   }))
+    //   })
 
-      el.addEventListener('mouseup', () => {
-        log.info(`${code} button released.`)
-        document.dispatchEvent(new KeyboardEvent('keyup', { code }))
-      })
-    })
+    //   el.addEventListener('mouseup', () => {
+    //     log.info(`${code} button released.`)
+    //     document.dispatchEvent(new KeyboardEvent('keyup', { code }))
+    //   })
+    // })
   })
 }
 
 function KeyEventHandler (ws: WebSocket) {
   return function handleKeyEvent (e: KeyboardEvent) {
-    if (e.isComposing || e.code === '229') {
-      return;
-    }
     console.log(e);
     
-    let command = [e.code]
+    let command = e.key
 
     const frame: ClientMessage = {
       type: 'key-command',
