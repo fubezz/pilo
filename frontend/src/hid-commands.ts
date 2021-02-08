@@ -1,117 +1,106 @@
 import e from "express";
 
 
-export class HID {
-  private static hidCommands = {
-    "AltLeft": "0xe2",
-    "AltRight": "0xe6",
-    "ArrowDown": "0x51",
-    "ArrowLeft": "0x50",
-    "ArrowRight": "0x4f",
-    "ArrowUp": "0x52",
-    "Backquote": "0x35",
-    "Backslash": "0x31",
-    "Backspace": "0x2a",
-    "BracketLeft": "0x2f",
-    "BracketRight": "0x30",
-    "CapsLock": "0x39",
-    "Comma": "0x36",
-    "ControlLeft": "0xe0",
-    "Delete": "0x4c",
-    "Digit0": "0x27",
-    "Digit1": "0x1e",
-    "Digit2": "0x1f",
-    "Digit3": "0x20",
-    "Digit4": "0x21",
-    "Digit5": "0x22",
-    "Digit6": "0x23",
-    "Digit7": "0x24",
-    "Digit8": "0x25",
-    "Digit9": "0x26",
-    "End": "0x4d",
-    "Enter": "0x28",
-    "Equal": "0x2e",
-    "Escape": "0x29",
-    "F1": "0x3a",
-    "F2": "0x3b",
-    "F3": "0x3c",
-    "F4": "0x3d",
-    "F5": "0x3e",
-    "F6": "0x3f",
-    "F7": "0x40",
-    "F8": "0x41",
-    "F9": "0x42",
-    "F10": "0x43",
-    "F11": "0x44",
-    "F12": "0x45",
-    "Home": "0x4a",
-    "IntlBackslash": "0x31",
-    "KeyA": "0x04",
-    "KeyB": "0x05",
-    "KeyC": "0x06",
-    "KeyD": "0x07",
-    "KeyE": "0x08",
-    "KeyF": "0x09",
-    "KeyG": "0x0a",
-    "KeyH": "0x0b",
-    "KeyI": "0x0c",
-    "KeyJ": "0x0d",
-    "KeyK": "0x0e",
-    "KeyL": "0x0f",
-    "KeyM": "0x10",
-    "KeyN": "0x11",
-    "KeyO": "0x12",
-    "KeyP": "0x13",
-    "KeyQ": "0x14",
-    "KeyR": "0x15",
-    "KeyS": "0x16",
-    "KeyT": "0x17",
-    "KeyU": "0x18",
-    "KeyV": "0x19",
-    "KeyW": "0x1a",
-    "KeyX": "0x1b",
-    "KeyY": "0x1c",
-    "KeyZ": "0x1d",
-    "MetaLeft": "0xe3",
-    "MetaRight": "0xe7",
-    "Minus": "0x2d",
-    "NumpadEnter": "0x58",
-    "PageDown": "0x4e",
-    "PageUp": "0x4b",
-    "Period": "0x37",
-    "Quote": "0x34",
-    "Semicolon": "0x33",
-    "ShiftLeft": "0xe1",
-    "ShiftRight": "0xe5",
-    "Slash": "0x38",
-    "Space": "0x2c",
-    "Tab": "0x2b"
+export class ArduinoKeyboard {
+  private static keyboardCode = {
+    AltLeft: 0x82,
+    AltRight: 0x86,
+    ArrowDown: 0xD9,
+    ArrowLeft: 0xD8,
+    ArrowRight: 0xD7,
+    ArrowUp: 0xDA,
+    Backquote: 0x60,
+    Backslash: 0x5C,
+    Backspace: 0xB2,
+    BracketLeft: 0x5B,
+    BracketRight: 0x5D,
+    CapsLock: 0xC1,
+    Comma: 0x2C,
+    ControlLeft: 0x80,
+    ControlRigth: 0x84,
+    Delete: 0xD4,
+    Digit0: 0x30,
+    Digit1: 0x31,
+    Digit2: 0x32,
+    Digit3: 0x33,
+    Digit4: 0x34,
+    Digit5: 0x35,
+    Digit6: 0x36,
+    Digit7: 0x37,
+    Digit8: 0x38,
+    Digit9: 0x39,
+    End: 0xD5,
+    Enter: 0xB0,
+    Equal: 0x3D,
+    Escape: 0x1B,
+    F1: 0xC2,
+    F2: 0xC3,
+    F3: 0xC4,
+    F4: 0xC5,
+    F5: 0xC6,
+    F6: 0xC7,
+    F7: 0xC8,
+    F8: 0xC9,
+    F9: 0xCA,
+    F10: 0xCB,
+    F11: 0xCC,
+    F12: 0xCD,
+    Home: 0xD2,
+    Insert: 0xD1,
+    KeyA: 0x41,
+    KeyB: 0x42,
+    KeyC: 0x43,
+    KeyD: 0x44,
+    KeyE: 0x45,
+    KeyF: 0x46,
+    KeyG: 0x47,
+    KeyH: 0x48,
+    KeyI: 0x49,
+    KeyJ: 0x4A,
+    KeyK: 0x4B,
+    KeyL: 0x4C,
+    KeyM: 0x4D,
+    KeyN: 0x4E,
+    KeyO: 0x4F,
+    KeyP: 0x50,
+    KeyQ: 0x51,
+    KeyR: 0x52,
+    KeyS: 0x53,
+    KeyT: 0x54,
+    KeyU: 0x55,
+    KeyV: 0x56,
+    KeyW: 0x57,
+    KeyX: 0x58,
+    KeyY: 0x59,
+    KeyZ: 0x5A,
+    Minus: 0x2D,
+    NumpadEnter: 0xB0,
+    OSLeft: 0x83,
+    OSRight: 0x87,
+    PageDown: 0xD6,
+    PageUp: 0xD3,
+    Period: 0x2E,
+    Quote: 0x22,
+    ShiftLeft: 0x81,
+    ShiftRight: 0x85,
+    Slash: 0x2F,
+    Space: 0x20,
+    Tab: 0xB3
   }
 
   public static jsToHID(event: KeyboardEvent, cb: CallableFunction): number[] {
 
-    if (typeof HID.hidCommands[event.code] === "undefined") {
+    if (typeof ArduinoKeyboard.keyboardCode[event.code] === "undefined") {
       return [];
     }
-    if (event.type === "keyup"){
-      return [0,0,0,0,0,0,0,0]
-    }
+  
+    const hidCode = parseInt(ArduinoKeyboard.keyboardCode[event.code]);
 
-    const hidCode = parseInt(HID.hidCommands[event.code]);
-
-    let modifierCode = 0
-    if (event.ctrlKey) {
-      modifierCode |= 0x01
+    if (event.type === "keydown"){
+      cb([0,hidCode])
+    }else{
+      cb([1,hidCode])
     }
-    if (event.shiftKey) {
-      modifierCode |= 0x02
-    }
-    if (event.altKey) {
-      modifierCode |= 0x04
-    }
-
-    const hid = [modifierCode, 0, hidCode, 0, 0, 0, 0, 0]
-    cb(hid)
   }
 }
 
