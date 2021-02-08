@@ -1,6 +1,6 @@
 
 #include <Keyboard.h>
-char key;
+
 
 void setup(){
   Serial1.begin(9600);
@@ -11,10 +11,15 @@ void setup(){
 
 void loop(){
   while (Serial1.available()) {
-    key = Serial1.read();
-    digitalWrite(LED_BUILTIN, 1);
-    Keyboard.write(key);
+    char cmd[2] = {0,0};
+    int x = Serial1.readBytes(cmd, 2);
+    if (cmd[0] == 0){
+      Keyboard.press(cmd[1]);  
+      digitalWrite(LED_BUILTIN, 1);
+      delay(10);
+      digitalWrite(LED_BUILTIN, 0);
+    }else{
+      Keyboard.release(cmd[1]);
+    }
   } 
-  digitalWrite(LED_BUILTIN, 0);
-  delay(10);
 }
