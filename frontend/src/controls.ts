@@ -1,6 +1,6 @@
 import log from './log'
 import { ClientMessage } from 'common'
-import { HID } from './hid-commands'
+import { ArduinoKeyboard } from './arduino-comands'
 
 export function startControls() {
   log.info('Connecting to websocket...')
@@ -41,7 +41,7 @@ export function startControls() {
 
 function KeyEventHandler(ws: WebSocket) {
   return function handleKeyEvent(e: KeyboardEvent) {
-    HID.jsToHID(e, (keycodeArray => {
+    ArduinoKeyboard.JSToKeystroke(e, (keycodeArray => {
       if (keycodeArray.length > 0) {
         const frame: ClientMessage = {
           type: 'key-command',

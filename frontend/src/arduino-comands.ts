@@ -88,7 +88,7 @@ export class ArduinoKeyboard {
     Tab: 0xB3
   }
 
-  public static jsToHID(event: KeyboardEvent, cb: CallableFunction): number[] {
+  public static JSToKeystroke(event: KeyboardEvent, cb: CallableFunction): number[] {
 
     if (typeof ArduinoKeyboard.keyboardCode[event.code] === "undefined") {
       return [];
