@@ -93,7 +93,7 @@ export class ArduinoKeyboard {
     if (typeof ArduinoKeyboard.keyboardCode[event.code] === "undefined") {
       return [];
     }
-  
+    
     const hidCode = parseInt(ArduinoKeyboard.keyboardCode[event.code]);
 
     if (event.type === "keydown"){
