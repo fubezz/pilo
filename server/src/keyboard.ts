@@ -22,6 +22,10 @@ export class Keyboard {
   }
 
   send(command: number[]) {
-    this.port.write(command)
+    
+    const byteBuffer = Buffer.from(command)
+    console.log(byteBuffer);
+    
+    this.port.write(byteBuffer)
   }
 }

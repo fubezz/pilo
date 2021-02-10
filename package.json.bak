@@ -7,6 +7,13 @@
   "homepage": "https://github.com/flotwig/pilo",
   "author": "Zach Bloomquist <pilo@chary.us>",
   "license": "AGPL-3.0-only",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "server",
+    "common",
+    "e2e"
+  ],
   "files": [
     "./frontend/dist",
     "./server/dist"
@@ -42,12 +49,5 @@
   "devDependencies": {
     "@semantic-release/exec": "^5.0.0",
     "semantic-release": "^17.1.1"
-  },
-  "dependencies": {
-    "bufferutil": "^4.0.1",
-    "express": "^4.17.1",
-    "serialport": "^9.0.1",
-    "utf-8-validate": "^5.0.2",
-    "ws": "^7.3.1"
   }
 }
